@@ -20,5 +20,5 @@ def restart_service(event, context):
     for task in tasks:
         logger.info("Stopping tasks {0}".format(tasks))
         response = client.stop_task(cluster=cluster, task=task)
-        logger.info("Stpo task response: {0}".format(response))
+        logger.info("Stop task response: {0}".format(response))
     logger.info("Completed service restart")
