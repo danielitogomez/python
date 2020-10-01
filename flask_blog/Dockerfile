@@ -1,4 +1,4 @@
-FROM python:3.7.1
+FROM ubuntu:18.04 
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV FLASK_APP "flask_blog/app.py"
@@ -7,15 +7,9 @@ ENV FLASK_DEBUG True
 
 RUN mkdir /app
 WORKDIR /app
-
-COPY * /app/
-
-RUN pip install --upgrade pip && \
-    pip install pipenv && \
-    pipenv install --dev --system --deploy --ignore-pipfile
-
-ADD . /app
-
-EXPOSE 5000
-
-CMD flask run --host=0.0.0.0
+COPY . /app
+RUN apt-get update -y && \
+    apt-get install -y python-pip python-dev && \
+    pip install -r requirements.txt   
+ 
+CMD flask run --host=0.0.0.0 --port=5000
