@@ -1,18 +1,23 @@
+# Importing modules
 import requests
 from bs4 import BeautifulSoup
 from install_packages import install_packages
 from logo import logo
 
+# calling ASCII logo
 print(logo)
 print("########################################")
 print("### Installing requirements packages ###")
 print("########################################")
 
+# Calling function installing requirements packages
 install_packages()
 
-# input variable urls
+# variable urls
 root_page = 'https://quotes.toscrape.com/'
 urls = 'https://quotes.toscrape.com/page/'
+# variable to manage the multiple web pages
+# If you need to do web scraping to all packages you can update this variable
 number_page = 2
 
 print("")
@@ -62,5 +67,5 @@ def web_scraping():
         print(remove_tags())
         print("")
 
-
+# calling the function web_scraping
 web_scraping()
