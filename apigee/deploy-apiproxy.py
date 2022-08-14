@@ -10,4 +10,9 @@ ORG = ('')
 ENV = ('test')
 
 for file in proxies:
-    call(['apigeetool', 'deployproxy', '-u', USER, '-p', PASS, '-o', ORG, '-e', ENV, '-n', file, '-d', '.'])
+    output = call(['apigeetool', 'deployproxy', '-u', USER, '-p', PASS, '-o', ORG, '-e', ENV, '-n', file, '-d', '.'])
+    if output == 'o':
+        print("Deploy ok")
+    else:
+        print("Some Error!")
+        exit()

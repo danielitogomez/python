@@ -1,0 +1,2 @@
+# https://pypi.org/project/Flask-HTTPAuth/
+Flask-HTTPAuth==3.3.0
