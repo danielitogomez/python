@@ -4,24 +4,27 @@ import time
 
 # input variables
 host = str(input("Enter some hostname or IP to scan\n"))
+start_port = int(input(("Enter start port\n")))
+end_port = int(input("Enter end port\n"))
 
-# define scan_ports function
-def scan_ports(port):
+
+def scan_port(port):
     try:
-
         host_ip = socket.gethostbyname(host)
+        status = False
 
         # create instance of socket
-        output_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(5)
 
-        # connecting host ip address and port
-        output_socket.connect((host_ip, port))
+        # connecting the host ip address and port
+        s.connect((host_ip, port))
         try:
-            banner = output_socket.recv(1024).decode()
-            print("Port {} is open with banner {}".format(port, banner))
+            banner = s.recv(1024).decode()
+            print("port {} is open with banner {}".format(port, banner))
 
         except:
-            print("Port {} is open ".format(port))
+            print("port {} is open ".format(port))
 
     except:
         pass
@@ -29,10 +32,9 @@ def scan_ports(port):
 
 start_time = time.time()
 
-# scan all ports
-for i in range(0, 64120):
-    thread = threading.Thread(target=scan_ports, args=[i])
+for i in range(start_port, end_port):
+    thread = threading.Thread(target=scan_port, args=[i])
     thread.start()
 
 end_time = time.time()
-print("To scan all ports took {} seconds".format(end_time - start_time))
+print("To scan all ports using sockets lib it took {} seconds".format(end_time - start_time))
