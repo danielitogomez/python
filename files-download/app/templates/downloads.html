@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Downloads</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <h1>Downloads</h1>
+    <a href="/" class="button" id="home-button" >Return to homepage</a> 
+    {% for pdf in pdfs %}
+      <li>
+        <a href="{{ url_for('download_file', filename=pdf) }}">{{ pdf }}</a>
+      </li>
+    {% endfor %}
+  </body>
+</html>
