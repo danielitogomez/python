@@ -27,4 +27,5 @@ client.send("GET / HTTP/1.1\r\nHost: {}\r\n\r\n".format(target_host).encode())
 response = client.recv(4096)
 
 print(response.decode())
+# Close the client
 client.close()
